@@ -10,7 +10,7 @@ local function errorMessage(str, pattern)
 end
 
 -- Check equality of a global `field` against `value` in the given `child` process.
--- @usage global_equality(child, "_G.YourPluginNameLoaded", true)
+-- @usage global_equality(child, "_G.ThemesLoaded", true)
 Helpers.expect.global_equality = MiniTest.new_expectation(
     "variable in child process matches",
     function(child, field, value)
@@ -20,7 +20,7 @@ Helpers.expect.global_equality = MiniTest.new_expectation(
 )
 
 -- Check type equality of a global `field` against `value` in the given `child` process.
--- @usage global_type_equality(child, "_G.YourPluginNameLoaded", "boolean")
+-- @usage global_type_equality(child, "_G.ThemesLoaded", "boolean")
 Helpers.expect.global_type_equality = MiniTest.new_expectation(
     "variable type in child process matches",
     function(child, field, value)
@@ -34,7 +34,7 @@ Helpers.expect.global_type_equality = MiniTest.new_expectation(
 Helpers.expect.config_equality = MiniTest.new_expectation(
     "config option matches",
     function(child, field, value)
-        return Helpers.expect.global_equality(child, "_G.YourPluginName.config." .. field, value)
+        return Helpers.expect.global_equality(child, "_G.Themes.config." .. field, value)
     end,
     errorMessage
 )
@@ -46,7 +46,7 @@ Helpers.expect.config_type_equality = MiniTest.new_expectation(
     function(child, field, value)
         return Helpers.expect.global_equality(
             child,
-            "type(_G.YourPluginName.config." .. field .. ")",
+            "type(_G.Themes.config." .. field .. ")",
             value
         )
     end,
@@ -58,7 +58,7 @@ Helpers.expect.config_type_equality = MiniTest.new_expectation(
 Helpers.expect.state_equality = MiniTest.new_expectation(
     "state matches",
     function(child, field, value)
-        return Helpers.expect.global_equality(child, "_G.YourPluginName.enabled." .. field, value)
+        return Helpers.expect.global_equality(child, "_G.Themes.enabled." .. field, value)
     end,
     errorMessage
 )
@@ -68,11 +68,7 @@ Helpers.expect.state_equality = MiniTest.new_expectation(
 Helpers.expect.state_type_equality = MiniTest.new_expectation(
     "state type matches",
     function(child, field, value)
-        return Helpers.expect.global_equality(
-            child,
-            "type(_G.YourPluginName.state." .. field .. ")",
-            value
-        )
+        return Helpers.expect.global_equality(child, "type(_G.Themes.state." .. field .. ")", value)
     end,
     errorMessage
 )

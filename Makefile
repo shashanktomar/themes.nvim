@@ -18,7 +18,7 @@ help: ## Display this help.
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_0-9-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 
 ##@ Primary Targets
-all: ## run all targets
+all: test lint docs ## run all targets
 
 test: ## runs all the test files.
 	nvim --version | head -n 1 && echo ''
@@ -41,6 +41,3 @@ docs-ci: deps docs ## documentation target for CI
 deps: ## installs `mini.nvim`, used for both the tests and documentation.
 	@mkdir -p deps
 	git clone --depth 1 https://github.com/echasnovski/mini.nvim deps/mini.nvim
-
-setup: ## a one time setup to bootstrap your repo
-	./scripts/setup.sh

@@ -1,5 +1,6 @@
--- credits to original theme https://github.com/ayu-theme/ayu-vim (dark)
--- This is just a modified version of it
+-- Credits:
+-- original theme: https://github.com/ayu-theme/ayu-vim (dark)
+-- base46 updates: https://github.com/NvChad/base46/blob/v2.0/lua/base46/themes/ayu_dark.lua
 
 ---@type Theme
 local M = {}

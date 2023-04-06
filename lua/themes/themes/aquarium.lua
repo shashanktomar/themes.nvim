@@ -1,5 +1,6 @@
--- credits to original theme https://github.com/FrenzyExists/aquarium-vim
--- This is just a modified version of it
+-- Credits:
+-- original theme: https://github.com/FrenzyExists/aquarium-vim
+-- base46 updates: https://github.com/NvChad/base46/blob/v2.0/lua/base46/themes/aquarium.lua
 
 ---@type Theme
 local M = {}

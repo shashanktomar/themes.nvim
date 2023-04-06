@@ -1,4 +1,3 @@
-local config = require("themes.config")
 local plugin_path = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":p:h")
 
 local M = {}
@@ -25,13 +24,7 @@ local loadIntegrations = function(theme)
     local filename = vim.fn.fnamemodify(file, ":r")
     local integration = load_hls(filename)
 
-    local style = nil
-    local int_config = config.options.integrations[filename]
-    if int_config then
-      style = int_config.style or nil
-    end
-
-    local highlights = integration.highlights(theme, style)
+    local highlights = integration.highlights(theme)
     set_hls(highlights.hls, highlights.ns_id)
   end
 end

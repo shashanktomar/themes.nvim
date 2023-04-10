@@ -10,10 +10,8 @@ concurrency:
 
 jobs:
   tests:
-    needs: 
-      - lint
     runs-on: ubuntu-latest
-
+    name: Test
     steps:
       - uses: actions/checkout@v3
 
@@ -22,7 +20,7 @@ jobs:
 
   docs:
     runs-on: ubuntu-latest
-    name: pandoc to vimdoc
+    name: Pandoc to Vimdoc
     steps:
       - uses: actions/checkout@v2
       - name: panvimdoc
@@ -43,7 +41,7 @@ jobs:
           commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
 
   release:
-    name: release
+    name: Release
     if: ${{ github.ref == 'refs/heads/main' }}
     needs:
       - tests

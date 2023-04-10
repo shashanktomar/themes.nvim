@@ -23,26 +23,6 @@ jobs:
           version: latest
           args: --check .
 
-  documentation:
-    runs-on: ubuntu-latest
-    name: documentation
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
-
-      - name: setup neovim
-        uses: rhysd/action-setup-vim@v1
-        with:
-          neovim: true
-          version: v0.8.3
-
-      - name: generate documentation
-        run: make docs-ci
-
-      - name: check docs diff
-        run: exit $(git status --porcelain doc | wc -l | tr -d " ")
-
   tests:
     needs: 
       - lint

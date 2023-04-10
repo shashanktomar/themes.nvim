@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run test
-        uses: lunarmodules/busted@v0
+        uses: lunarmodules/busted@v2.1.2
 
   docs:
     runs-on: ubuntu-latest

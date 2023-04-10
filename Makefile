@@ -1,6 +1,8 @@
 # we disable the `all` command because some external tool might run it automatically
 .SUFFIXES:
 
+LUAROCKS_CMD ?= luarocks --lua-dir=$$(brew --prefix)/opt/lua@5.1 --lua-version=5.1
+
 ##@ General
 
 # The help target prints out all targets with their descriptions organized
@@ -21,10 +23,7 @@ help: ## Display this help.
 all: test lint docs ## run all targets
 
 test: ## runs all the test files.
-	nvim --version | head -n 1 && echo ''
-	nvim --headless --noplugin -u ./scripts/minimal_init.lua \
-		-c "lua require('mini.test').setup()" \
-		-c "lua MiniTest.run({ execute = { reporter = MiniTest.gen_reporter.stdout({ group_depth = 1 }) } })"
+	busted tests
 
 test-ci: deps test ## test target for CI
 
@@ -41,3 +40,7 @@ docs-ci: deps docs ## documentation target for CI
 deps: ## installs `mini.nvim`, used for both the tests and documentation.
 	@mkdir -p deps
 	git clone --depth 1 https://github.com/echasnovski/mini.nvim deps/mini.nvim
+
+rocks: ## install `luarocks` deps
+	$(LUAROCKS_CMD)	install --deps-only themes.nvim-dev-1.rockspec
+

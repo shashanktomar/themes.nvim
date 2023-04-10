@@ -1,6 +1,8 @@
 # we disable the `all` command because some external tool might run it automatically
 .SUFFIXES:
 
+LUAROCKS_CMD ?= luarocks --lua-dir=$$(brew --prefix)/opt/lua@5.1 --lua-version=5.1
+
 ##@ General
 
 # The help target prints out all targets with their descriptions organized
@@ -18,26 +20,15 @@ help: ## Display this help.
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_0-9-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 
 ##@ Primary Targets
-all: test lint docs ## run all targets
-
 test: ## runs all the test files.
-	nvim --version | head -n 1 && echo ''
-	nvim --headless --noplugin -u ./scripts/minimal_init.lua \
-		-c "lua require('mini.test').setup()" \
-		-c "lua MiniTest.run({ execute = { reporter = MiniTest.gen_reporter.stdout({ group_depth = 1 }) } })"
-
-test-ci: deps test ## test target for CI
+	busted tests
 
 lint: ## performs a lint check and fixes issue if possible, following the config in `stylua.toml`
 	stylua .
 
-##@ Documentation Targets
-docs: ## generates the documentation.
-	nvim --headless --noplugin -u ./scripts/minimal_init.lua -c "lua require('mini.doc').generate()" -c "qa!"
-
-docs-ci: deps docs ## documentation target for CI
+test-ci: lint test ## test target for CI
 
 ##@ Other Targets
-deps: ## installs `mini.nvim`, used for both the tests and documentation.
-	@mkdir -p deps
-	git clone --depth 1 https://github.com/echasnovski/mini.nvim deps/mini.nvim
+rocks: ## install `luarocks` deps
+	$(LUAROCKS_CMD)	install --deps-only themes.nvim-dev-1.rockspec
+

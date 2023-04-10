@@ -1,109 +1,68 @@
-<p align="center">
-  <h1 align="center">themes.nvim</h2>
-</p>
+# 🌈 themes.nvim
 
-<p align="center">
-    > A catch phrase that describes your plugin.
-</p>
+**themes.nvim** is a Neovim plugin with builtin UI themes.
 
-<div align="center">
-    > Drag your video (<10MB) here to host it for free on GitHub.
-</div>
+> **Credit**: This plugin is a port of [NvChad base46](https://github.com/NvChad/base46) plugin to
+> use it outside NvChad setup. It would not have been possible without amazing work done on NvChad repo
 
-<div align="center">
+## ✨ Features
 
-> Videos don't work on GitHub mobile, so a GIF alternative can help users.
+- 🎨 Provided themes
+  - aquarium
+  - ashes
+  - ayu_dark
+  - ayu_light
+  - chadracula
+- Integration with other plugins to change the highlight groups based on selected theme
+  - [which-key](https://github.com/folke/which-key.nvim)
 
-_[GIF version of the showcase video for mobile users](SHOWCASE_GIF_LINK)_
+## 📺 Showcase
 
-</div>
+TODO add screenshots to wiki and link to the page
 
-## ⚡️ Features
+## ⚡️ Requirements
 
-> Write short sentences describing your plugin features
+TODO
 
-- FEATURE 1
-- FEATURE ..
-- FEATURE N
+## 📦 Installation
 
-## 📋 Installation
+Install the plugin with your preferred package manager:
 
-<div align="center">
-<table>
-<thead>
-<tr>
-<th>Package manager</th>
-<th>Snippet</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-
-[wbthomason/packer.nvim](https://github.com/wbthomason/packer.nvim)
-
-</td>
-<td>
+### [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ```lua
--- stable version
-use {"themes.nvim", tag = "*" }
--- dev version
-use {"themes.nvim"}
+require("lazy").setup({
+  {
+    "shashanktomar/themes.nvim",
+    config = function()
+      require("themes").setup({
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      })
+    end,
+  },
+})
 ```
 
-</td>
-</tr>
-<tr>
-<td>
-
-[junegunn/vim-plug](https://github.com/junegunn/vim-plug)
-
-</td>
-<td>
+### [packer](https://github.com/wbthomason/packer.nvim)
 
 ```lua
--- stable version
-Plug "themes.nvim", { "tag": "*" }
--- dev version
-Plug "themes.nvim"
+use {
+  "shashanktomar/themes.nvim",
+  config = function()
+    require("themes").setup {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  end
+}
 ```
 
-</td>
-</tr>
-<tr>
-<td>
+## ⚙️ Configuration
 
-[folke/lazy.nvim](https://github.com/folke/lazy.nvim)
-
-</td>
-<td>
-
-```lua
--- stable version
-require("lazy").setup({{"themes.nvim", version = "*"}})
--- dev version
-require("lazy").setup({"themes.nvim"})
-```
-
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-## ☄ Getting started
-
-> Describe how to use the plugin the simplest way
-
-## ⚙ Configuration
-
-> The configuration list sometimes become cumbersome, making it folded by default reduce the noise of the README file.
-
-<details>
-<summary>Click to unfold the full list of options with their default values</summary>
-
-> **Note**: The options are also available in Neovim by calling `:h themes.options`
+TODO
 
 ```lua
 require("themes").setup({
@@ -111,22 +70,10 @@ require("themes").setup({
 })
 ```
 
-</details>
-
-## 🧰 Commands
-
-|   Command   |         Description        |
-|-------------|----------------------------|
-|  `:Toggle`  |     Enables the plugin.    |
-
 ## ⌨ Contributing
 
 PRs and issues are always welcome. Make sure to provide as much context as possible when opening one.
 
-## 🗞 Wiki
-
-You can find guides and showcase of the plugin on [the Wiki](https://github.com/shashanktomar/themes.nvim/wiki)
-
 ## 🎭 Motivations
 
-> If alternatives of your plugin exist, you can provide some pros/cons of using yours over the others.
+- [NvChad](https://nvchad.com/) [base46](https://github.com/NvChad/base46) plugin

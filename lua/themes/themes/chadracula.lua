@@ -1,5 +1,6 @@
--- Credits to original theme https://github.com/dracula/vim
--- This is a modified version
+-- Credits:
+-- original theme: https://github.com/dracula/vim
+-- base46 updates: https://github.com/NvChad/base46/blob/v2.0/lua/base46/themes/chadracula.lua
 
 ---@type Theme
 local M = {}

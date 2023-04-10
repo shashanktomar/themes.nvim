@@ -1,5 +1,6 @@
--- credits to original theme https://github.com/chriskempson/base16-vim/blob/master/colors/base16-ashes.vim
--- This is just a modified version of it
+-- Credits:
+-- original theme: https://github.com/chriskempson/base16-vim/blob/master/colors/base16-ashes.vim
+-- base46 updates: https://github.com/NvChad/base46/blob/v2.0/lua/base46/themes/ashes.lua
 
 ---@type Theme
 local M = {}

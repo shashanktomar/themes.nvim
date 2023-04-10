@@ -1,0 +1,5 @@
+describe("sum module", function()
+  it("should return the sum of two numbers", function()
+    assert.are.same(300, 300)
+  end)
+end)

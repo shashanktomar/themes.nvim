@@ -2,6 +2,5 @@ deps
 **.DS_Store
 .luarc.json
 /luarocks
-/lua
 /lua_modules
 /.luarocks

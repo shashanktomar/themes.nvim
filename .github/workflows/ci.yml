@@ -9,18 +9,32 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  tests:
+  lint:
     runs-on: ubuntu-latest
-    name: Test
+    name: lint
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: JohnnyMorganz/stylua-action@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
+          args: --check .
+
+  tests:
+    needs: 
+      - lint
+    runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
       - name: run tests
-        run: make test-ci
+        run: make test
 
   docs:
     runs-on: ubuntu-latest
-    name: Pandoc to Vimdoc
+    name: pandoc to vimdoc
     steps:
       - uses: actions/checkout@v2
       - name: panvimdoc
@@ -41,7 +55,7 @@ jobs:
           commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
 
   release:
-    name: Release
+    name: release
     if: ${{ github.ref == 'refs/heads/main' }}
     needs:
       - tests

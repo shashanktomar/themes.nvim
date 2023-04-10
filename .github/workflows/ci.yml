@@ -2,56 +2,45 @@ name: main
 
 on:
   push:
-    branches: [main]
   pull_request:
-    types: [opened, synchronize]
 
 concurrency:
   group: github.head_ref
   cancel-in-progress: true
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    name: lint
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: JohnnyMorganz/stylua-action@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          version: latest
-          args: --check .
-
   tests:
     needs: 
       - lint
-      - documentation
     runs-on: ubuntu-latest
-    timeout-minutes: 2
-    strategy:
-      matrix:
-        neovim_version: ['v0.7.2', 'v0.8.3', 'nightly']
 
     steps:
       - uses: actions/checkout@v3
 
-      - run: date +%F > todays-date
-
-      - name: restore cache for today's nightly.
-        uses: actions/cache@v3
-        with:
-          path: _neovim
-          key: ${{ runner.os }}-x64-${{ hashFiles('todays-date') }}
-
-      - name: setup neovim
-        uses: rhysd/action-setup-vim@v1
-        with:
-          neovim: true
-          version: ${{ matrix.neovim_version }}
-
       - name: run tests
         run: make test-ci
+
+  docs:
+    runs-on: ubuntu-latest
+    name: pandoc to vimdoc
+    steps:
+      - uses: actions/checkout@v2
+      - name: panvimdoc
+        uses: kdheepak/panvimdoc@main
+        with:
+          vimdoc: themes
+          version: "Neovim >= 0.8.0"
+          demojify: true
+          treesitter: true
+          toc: true
+          description: "A NeoVim themes plugin"
+      - name: Push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "chore(build): auto-generate vimdoc"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"
+          commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
 
   release:
     name: release

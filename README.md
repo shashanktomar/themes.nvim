@@ -13,7 +13,7 @@
   - ayu_dark
   - ayu_light
   - chadracula
-- 🛠️ Integration with other plugins to change the highlight groups based on selected theme
+- Integration with other plugins to change the highlight groups based on selected theme
   - [which-key](https://github.com/folke/which-key.nvim)
 
 ## 📺 Showcase

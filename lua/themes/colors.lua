@@ -1,3 +1,6 @@
+-- Credits:
+-- All the code here is copied from https://github.com/NvChad/base46/blob/v2.0/lua/base46/colors.lua
+
 local M = {}
 
 -- Convert a hex color value to RGB

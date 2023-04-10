@@ -1,150 +1,111 @@
-==============================================================================
-------------------------------------------------------------------------------
-                                                                     *M.setup()*
-                               `M.setup`({opts})
-Parameters~
-{opts} `(optional)` Options
-
-------------------------------------------------------------------------------
-                                                                 *M.get_theme()*
-                             `M.get_theme`({name})
-Parameters~
-{name} `(string)` # name of the theme
-Return~
-`(Theme|nil)` # `opts.custom.themes_path` is given higher priority than inbuilt themes
-
+*themes.txt*                                            A NeoVim themes plugin
 
 ==============================================================================
-------------------------------------------------------------------------------
-                                                                      *defaults*
-                                   `defaults`
-Class~
-{Options}
+Table of Contents                                   *themes-table-of-contents*
 
-------------------------------------------------------------------------------
-                                                                     *M.options*
-                                  `M.options`
-Type~
-Options
-
-------------------------------------------------------------------------------
-                                                                     *M.setup()*
-                               `M.setup`({opts})
-Parameters~
-{opts} `(optional)` Options
-
+1. themes.nvim                                            |themes-themes.nvim|
+  - Features                                     |themes-themes.nvim-features|
+  - Showcase                                     |themes-themes.nvim-showcase|
+  - Requirements                             |themes-themes.nvim-requirements|
+  - Installation                             |themes-themes.nvim-installation|
+  - Configuration                           |themes-themes.nvim-configuration|
+  - Contributing                             |themes-themes.nvim-contributing|
+  - Motivations                               |themes-themes.nvim-motivations|
 
 ==============================================================================
-------------------------------------------------------------------------------
+1. themes.nvim                                            *themes-themes.nvim*
+
+**themes.nvim** is a Neovim plugin with builtin UI themes.
 
 
-------------------------------------------------------------------------------
-Class~
-{Theme}
-Fields~
-{base30} Base30
-{base16} Base16
-{type} "dark" | "light"
+  **Credit**This plugin is a port of NvChad base46
+  <https://github.com/NvChad/base46> plugin to use it outside NvChad setup. It
+  would not have been possible without amazing work done on NvChad repo
 
-------------------------------------------------------------------------------
-Class~
-{Base30}
-Fields~
-{white} `(string)`
-{darker_black} `(string)`
-{black} `(string)`
-{black2} `(string)`
-{one_bg} `(string)`
-{one_bg2} `(string)`
-{one_bg3} `(string)`
-{grey} `(string)`
-{grey_fg} `(string)`
-{grey_fg2} `(string)`
-{light_grey} `(string)`
-{red} `(string)`
-{baby_pink} `(string)`
-{pink} `(string)`
-{line} `(string)`
-{green} `(string)`
-{vibrant_green} `(string)`
-{blue} `(string)`
-{nord_blue} `(string)`
-{yellow} `(string)`
-{sun} `(string)`
-{purple} `(string)`
-{dark_purple} `(string)`
-{teal} `(string)`
-{orange} `(string)`
-{cyan} `(string)`
-{statusline_bg} `(string)`
-{lightbg} `(string)`
-{pmenu_bg} `(string)`
-{folder_bg} `(string)`
-
-------------------------------------------------------------------------------
-Class~
-{Base16}
-Fields~
-{base00} `(string)`
-{base01} `(string)`
-{base02} `(string)`
-{base03} `(string)`
-{base04} `(string)`
-{base05} `(string)`
-{base06} `(string)`
-{base07} `(string)`
-{base08} `(string)`
-{base09} `(string)`
-{base0A} `(string)`
-{base0B} `(string)`
-{base0C} `(string)`
-{base0D} `(string)`
-{base0E} `(string)`
-{base0F} `(string)`
-
-------------------------------------------------------------------------------
-Class~
-{HighlightMap} # same as {val} accepted by nvim_set_hl()
-Fields~
-{fg} `(string|nil)`
-{bg} `(string|nil)`
-{sp} `(string|nil)`
-{blend} `(integer|nil)` # between 0 and 100
-{bold} `(boolean|nil)`
-{standout} `(boolean|nil)`
-{underline} `(boolean|nil)`
-{undercurl} `(boolean|nil)`
-{underdouble} `(boolean|nil)`
-{underdotted} `(boolean|nil)`
-{underdashed} `(boolean|nil)`
-{strikethrough} `(boolean|nil)`
-{italic} `(boolean|nil)`
-{reverse} `(boolean|nil)`
-{nocombine} `(boolean|nil)`
-{link} `(string|nil)` # name of another highlight group to link to
-
-------------------------------------------------------------------------------
-Class~
-{Integration}
-Fields~
-{ns_id} `(number|nil)` # namespace id for this hightlight group
-{highlights} `(fun(theme: Theme): table<string,)` HighlightMap>
+FEATURES                                         *themes-themes.nvim-features*
 
 
-==============================================================================
-------------------------------------------------------------------------------
-                                                                             *M*
-                                      `M`
-Type~
-Theme
+- Provided themes
+    - aquarium
+    - ashes
+    - ayu_dark
+    - ayu_light
+    - chadracula
+- Integration with other plugins to change the highlight groups based on selected theme
+    - which-key <https://github.com/folke/which-key.nvim>
 
 
-==============================================================================
-------------------------------------------------------------------------------
-                                                                             *M*
-                                      `M`
-Type~
-Theme
+SHOWCASE                                         *themes-themes.nvim-showcase*
+
+TODO add screenshots to wiki and link to the page
 
 
- vim:tw=78:ts=8:noet:ft=help:norl:
+REQUIREMENTS                                 *themes-themes.nvim-requirements*
+
+TODO
+
+
+INSTALLATION                                 *themes-themes.nvim-installation*
+
+Install the plugin with your preferred package manager:
+
+
+LAZY.NVIM ~
+
+>lua
+    require("lazy").setup({
+      {
+        "shashanktomar/themes.nvim",
+        config = function()
+          require("themes").setup({
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+          })
+        end,
+      },
+    })
+<
+
+
+PACKER ~
+
+>lua
+    use {
+      "shashanktomar/themes.nvim",
+      config = function()
+        require("themes").setup {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      end
+    }
+<
+
+
+CONFIGURATION                               *themes-themes.nvim-configuration*
+
+TODO
+
+>lua
+    require("themes").setup({
+        -- you can copy the full list from lua/themes/config.lua
+    })
+<
+
+
+CONTRIBUTING                                 *themes-themes.nvim-contributing*
+
+PRs and issues are always welcome. Make sure to provide as much context as
+possible when opening one.
+
+
+MOTIVATIONS                                   *themes-themes.nvim-motivations*
+
+
+- NvChad <https://nvchad.com/> base46 <https://github.com/NvChad/base46> plugin
+
+Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>
+
+vim:tw=78:ts=8:noet:ft=help:norl:

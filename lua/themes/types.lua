@@ -2,27 +2,18 @@
 
 ---------- Options ------------
 
----@alias IntegrationTypes "default" | "cmp" | "which-key"
-
----@class CmpIntegrations
----@field style? CmpStyle defaults to "default"
-
----@class IntegrationOptions
----@field include? IntegrationTypes[] Integrations to include. If missing, everything is included
----@field exclude? IntegrationTypes[] Integrations to exclude. If missing, nothing is excluded
----@field cmp? CmpIntegrations
+---@alias IntegrationTypes "default" |  "which-key"
 
 ---@class CustomOptions
----@field themes_path? string defaults to "config.ui.themes"
+---@field themes_path? string # User path to search for custom themes, defaults to `config.ui.themes`
 
 ---@class Options
----@field theme? string the name of the theme. Setting this as nil is equivalent to disabling the plugin
----@field integrations? IntegrationOptions
+---@field theme? string # The name of the theme. Setting this as nil is equivalent to disabling the plugin
 ---@field custom CustomOptions
 
 ---------- Core Types ------------
 
----@alias Color string
+---@alias Color string # A hexadecimal value representing a color e.g. #ffffff
 ---@alias ThemeType "dark" | "light"
 
 ---@class Theme
@@ -81,11 +72,11 @@
 ---@field base0E Color
 ---@field base0F Color
 
----@class HighlightMap same as {val} accepted by nvim_set_hl()
+---@class HighlightMap # Same as {val} accepted by nvim_set_hl()
 ---@field fg Color|nil
 ---@field bg Color|nil
 ---@field sp Color|nil
----@field blend integer|nil between 0 and 100
+---@field blend integer|nil # Between 0 and 100
 ---@field bold boolean|nil
 ---@field standout boolean|nil
 ---@field underline boolean|nil
@@ -97,13 +88,13 @@
 ---@field italic boolean|nil
 ---@field reverse boolean|nil
 ---@field nocombine boolean|nil
----@field link string|nil name of another highlight group to link to
+---@field link string|nil # Name of another highlight group to link to
 
 ---@alias Highlights table<string, HighlightMap>
 
 ---@class HighlightMap
 ---@field hls Highlights
----@field ns_id? number namespace id for this hightlight group. Defaults to 0
+---@field ns_id? number # Namespace id for this hightlight group. Defaults to 0
 
 ---@class Integration
 ---@field highlights fun(theme: Theme, style?: string): HighlightMap
